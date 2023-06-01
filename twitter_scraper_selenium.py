@@ -15,22 +15,22 @@ driver = webdriver.Firefox(options = options, service=ser)
 
 url = 'https://twitter.com/i/flow/login'
 
-start = time.time()
-
 # Actual program:
 my_email = 'froncek1231@gmail.com'
 username = 'JohnMelody43'
 password = 'WStwitter23'
 
+time.sleep(5)
 driver.get(url)
-time.sleep(3)
+
+time.sleep(5)
 
 #Logging in 
 email = driver.find_element(By.XPATH, '//input[@spellcheck="true"]')
 email.send_keys(my_email)
 email.send_keys(Keys.RETURN)
 
-time.sleep(3)
+time.sleep(5)
 try:
     pass_elem = driver.find_element(By.XPATH, '//input[@type="password"]')
     pass_elem.send_keys(password)
@@ -47,74 +47,71 @@ except:
     pass_elem.send_keys(password)
     pass_elem.send_keys(Keys.RETURN)
 
+time.sleep(3)
 
 #Searching tweets on Yahoo Finance
 search_bar = driver.find_element(By.XPATH, '//input[@placeholder="Search Twitter"]')
 search_bar.send_keys('Yahoo Finance')
 search_bar.send_keys(Keys.RETURN)
 
+time.sleep(3)
+
 #Tweets from Yahoo Finance 
 # try with tab index = 0 
-profile = driver.find_element(By.XPATH, '//*[contains(text(), "Yahoo Finance")]')
-profile.click
+span_profile = driver.find_element(By.XPATH, '//div[@class="css-1dbjc4n r-1wbh5a2 r-dnmrzs"]')
+profile = span_profile.find_element(By.XPATH, './/a')
+profile.click()
 
-#From this moment on we can either utilise bs.soup or scrapy or selenium to scrape tweets from the site
+time.sleep(5)
 
-# Close browser:
-#driver.quit()
+tweets_list = []
 
-#css-18t94o4 css-1dbjc4n r-sdzlij r-1phboty r-rs99b7 r-ywje51 r-usiww2 r-2yi16 r-1qi8awa r-1ny4l3l r-ymttw5 r-o7ynqc r-6416eg r-lrvibr r-13qz1uu
+# Scrolling and collecting tweets along:
 
-'''
-time.sleep(2)
+#defining the first tweet to appear last in the first view of the page
+#afterwards we will have to get rid of duplicates
+tweets = driver.find_elements(By.CSS_SELECTOR, '[data-testid="tweet"]')
+scroll_element = tweets[-1]
 
-password = driver.find_element(By.XPATH, '//input[@placeholder="password"]')
-my_pass = getpass.getpass('Please provide your email:')
-password.send_keys(my_pass)
+start = time.time()
 
-time.sleep(2)
+while True:
+    # Scroll inside the specific element
+    driver.execute_script("arguments[0].scrollIntoView();", scroll_element)
 
-button = driver.find_element(By.XPATH, '//button[@type="submit"]')
-button.click()
+    # Calculate the new scroll height and check if it has reached the end
+    print('No of gathered tweets: '.len(tweets_list))
+    if len(tweets_list) > 200:# or new_height == last_height:
+        break
+    #last_height = new_height
 
-time.sleep(9)
+    # Appending tweets from the currently chosen part of the site:
+    time.sleep(2)
+    tweets = driver.find_elements(By.CSS_SELECTOR, '[data-testid="tweet"]')  #HERE WE CAN USE EITHER SCRAPY, BS, OR SELENIUM...
+    tweets_list.extend([tweet.text for tweet in tweets])
 
-
-searchbar
-
-chat = driver.find_element(By.XPATH, '/html/body/div[1]/div/aside[1]/div/div[1]/div[2]/ul/li[2]/button')
-chat.click()
-
-time.sleep(4)
-
-bot_test_chat = driver.find_element(By.XPATH, '/html/body/div[1]/div/aside[2]/div[2]/div[2]/ul/li[1]/h5')
-bot_test_chat.click()
-
-time.sleep(4)
-
-timestamp = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S)")
-
-driver.find_element(By.XPATH, '/html/body/div[1]/div/div[4]/div/div[2]/div[2]/div/div/div[2]/div[1]/textarea').send_keys('Hello I am little bot!\n')
-time.sleep(0.3)
-driver.find_element(By.XPATH, '/html/body/div[1]/div/div[4]/div/div[2]/div[2]/div/div/div[2]/div[1]/textarea').send_keys('I messaged at: ' + timestamp + '\n')
-time.sleep(0.3)
-driver.find_element(By.XPATH, '/html/body/div[1]/div/div[4]/div/div[2]/div[2]/div/div/div[2]/div[1]/textarea').send_keys('I was run by: ' + my_email + '\n')
-
-# Pressing enter:
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
-actions = ActionChains(driver)
-actions.send_keys(Keys.ENTER)
-actions.perform()
-
-
-
+    scroll_element = tweets[-1]
+ 
 end = time.time()
 
+#erasing duplicates should be done after extracting text as it is a dynamic page
 print("Time required by Scraper name:", end-start)
+
+time.sleep(3)
+
+print('No. of gathered tweets before erasing duplicates: ', len(tweets_list))
+tweets_list = list(set(tweets_list))
+
+time.sleep(3)
+
+print('No. of gathered tweets after erasing duplicates: ', len(tweets_list))
+
+time.sleep(10)
+
+print(tweets_list[14])
 
 time.sleep(10)
 
 # Close browser:
 driver.quit()
-'''
+
