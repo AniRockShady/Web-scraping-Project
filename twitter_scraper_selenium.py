@@ -80,7 +80,7 @@ while True:
     driver.execute_script("arguments[0].scrollIntoView();", scroll_element)
 
     # Calculate the new scroll height and check if it has reached the end
-    print('No of gathered tweets: '.len(tweets_list))
+    print('No of gathered tweets: ', len(tweets_list))
     if len(tweets_list) > 200:# or new_height == last_height:
         break
     #last_height = new_height
