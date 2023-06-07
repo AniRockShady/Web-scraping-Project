@@ -1,3 +1,7 @@
+######################################
+# RottenTomatotes Movie Info Scraper #
+######################################
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
@@ -7,7 +11,7 @@ import csv
 import pandas as pd
 from tqdm import tqdm
 
-# Init:
+# Initialising driver:
 gecko_path = '/bin/geckodriver'
 ser = Service(gecko_path)
 options = webdriver.firefox.options.Options()
@@ -20,7 +24,9 @@ url = 'https://editorial.rottentomatoes.com/guide/best-netflix-movies-to-watch-r
 driver.get(url)
 time.sleep(2)
 
+#Starting timer
 start = time.time()
+
 #Accepting cookies
 try:
     accept_button = driver.find_element(By.XPATH, '//button[@id="onetrust-accept-btn-handler"]') 
@@ -39,8 +45,15 @@ for title in titles:
     if movie_link:
         links.append(movie_link.group())
 
+#Boolean variable choosing whether to scrape first 100 movie titles:
+Scrape_100 = True 
+
+if Scrape_100:
+    links = links[:100]
+    
 print('Number of scraped movie links: ',len(links))
-# Defininig CSV to store scraped info
+
+# Defininig list to store dicts with scraped info
 df_info = []
 
 for i in tqdm(range(len(links)), desc = 'Processing'):
@@ -56,10 +69,11 @@ end  = time.time()
 
 print(f"Time required by Selenium scraper: {end-start} seconds", )
 
-#Transforming to dataframe format 
+#Transforming  list to dataframe format 
 df_info = pd.DataFrame(df_info)
 
-df_info
+#Saving it to a csv
+df_info.to_csv("HundredBestFilmsInfo.csv", index=False)
 
-# Quit the driver
+#Quitting the driver
 driver.quit()
