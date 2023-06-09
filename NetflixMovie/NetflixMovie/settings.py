@@ -7,6 +7,9 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+#USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+
+
 BOT_NAME = "NetflixMovie"
 
 SPIDER_MODULES = ["NetflixMovie.spiders"]
@@ -14,7 +17,7 @@ NEWSPIDER_MODULE = "NetflixMovie.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'Chrome/91.0.4472.124'
+USER_AGENT = 'Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
