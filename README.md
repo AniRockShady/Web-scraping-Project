@@ -1,3 +1,11 @@
+# Beautiful Soup: How to Run
+
+
+
+# Selenium: How to Run
+
+
+
 # Scrapy: How to Run
 - Fetch this repository to your local device.
 - Use this command in terminal: _cd /mnt/(Your Local Path here)/Webscrapping-Project/scrapy_
