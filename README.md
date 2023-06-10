@@ -15,6 +15,6 @@ my scraper does the job of scraping specified number of tweets from YahooFinance
 
 # Scrapy: How to Run
 - Clone this repository to your local device.
-- Use this command in terminal: _cd /mnt/(Your Local Path here)/Webscrapping-Project/scrapy_
+- Use this command in terminal: _cd /mnt/(Your Local Path here)/Web-scraping-Project/scrapy_
 - Then in the terminal Run **_scrapy crawl t1_spider -O output.csv_**  to just get the output.csv in scrapy folder
 - In this folder you will already find movielist.csv which was extracted by me.
