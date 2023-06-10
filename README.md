@@ -1,16 +1,16 @@
 # Beautiful Soup: How to Run
 
-Please clone this repository on you local device
-Navigate to "soup" folder and run "NetflixmoviesInfo.py"
-It will will be generating the csv file named "Netflixmovies.csv"
+Please clone this repository on you local device <br/>
+Navigate to "soup" folder and run "NetflixmoviesInfo.py" <br/>
+It will will be generating the csv file named "Netflixmovies.csv" 
 
 # Selenium: How to Run
 
-Please clone this repository on you local device
-Navigate to "selenium" folder and run "RottentomatoesSeleniumScraper.py"
-It will will be generating the csv file named "HundredBestFilmsInfo.csv"
+Please clone this repository on you local device <br/>
+Navigate to "selenium" folder and run "RottentomatoesSeleniumScraper.py" <br/>
+It will will be generating the csv file named "HundredBestFilmsInfo.csv" <br/> <br/>
 
-(<b>extra detail</b>: in the selenium folder we have also attached our previous approach to the project:
+(<b>extra detail</b>: in the selenium folder we have also attached our previous approach to the project: <br/>
 my scraper does the job of scraping specified number of tweets from YahooFinance twitter profile)
 
 # Scrapy: How to Run
