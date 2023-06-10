@@ -1,10 +1,14 @@
 # Beautiful Soup: How to Run
 
-
+Please fetch this repository on you local device
+Navigate to "soup" folder and run "NetflixmoviesInfo.py"
+It will will be generating the csv file named "Netflixmovies.csv"
 
 # Selenium: How to Run
 
-
+Please fetch this repository on you local device
+Navigate to "selenium" folder and run "RottentomatoesSeleniumScraper.py"
+It will will be generating the csv file named "Output-HundredBestFilmsInfo.csv"
 
 # Scrapy: How to Run
 - Fetch this repository to your local device.
