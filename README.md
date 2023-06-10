@@ -8,7 +8,7 @@ It will will be generating the csv file named "Netflixmovies.csv"
 
 Please clone this repository on you local device <br/>
 Navigate to "selenium" folder and run "RottentomatoesSeleniumScraper.py" <br/>
-It will will be generating the csv file named "HundredBestFilmsInfo.csv" <br/> <br/>
+It will will be generating the csv file named "HundredBestFilmsInfo.csv" <br/> 
 
 (<b>extra detail</b>: in the selenium folder we have also attached our previous approach to the project: <br/>
 my scraper does the job of scraping specified number of tweets from YahooFinance twitter profile)
